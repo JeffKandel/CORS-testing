@@ -20,9 +20,14 @@ const lowercase = s => {
 };
 
 const app = express();
-app.server = http.createServer(app);
+app.server = http.createServer(app)
 
-app.get("/api/reverse/:something",cors(), async (req, res) => {
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.get("/api/reverse/:something",cors(corsOptions), async (req, res) => {
   const something = req.params.something;
   console.log(`Reversing "${something}"`);
   const reversed = await reverse(something);
