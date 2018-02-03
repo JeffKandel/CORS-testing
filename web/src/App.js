@@ -20,7 +20,7 @@ class App extends Component {
       loading: true
     });
 
-    const response = await fetch("/api/reverse/" + this.state.input);
+    const response = await fetch("http://localhost:8080/api/reverse/" + this.state.input);
     const result = await response.json();
 
     this.setState({
