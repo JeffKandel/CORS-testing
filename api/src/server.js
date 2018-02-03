@@ -2,7 +2,7 @@ import http from "http";
 import express from "express";
 
 const PORT = 8080;
-const DELAY = 2500;
+const DELAY = 100;
 
 const reverse = s => {
   const out = s.split("").reverse().join("");
@@ -15,7 +15,7 @@ const app = express();
 app.server = http.createServer(app);
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
