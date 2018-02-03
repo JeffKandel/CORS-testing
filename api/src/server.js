@@ -1,5 +1,6 @@
 import http from "http";
 import express from "express";
+import cors from "cors";
 
 const PORT = 8080;
 const DELAY = 100;
@@ -20,12 +21,6 @@ const lowercase = s => {
 
 const app = express();
 app.server = http.createServer(app);
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 app.get("/api/reverse/:something", async (req, res) => {
   const something = req.params.something;
