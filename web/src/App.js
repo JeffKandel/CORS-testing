@@ -15,12 +15,12 @@ class App extends Component {
     });
   };
 
-  handleClick = async e => {
+  handleClick = async (e,type) => {
     this.setState({
       loading: true
     });
 
-    const response = await fetch("http://localhost:8080/api/reverse/" + this.state.input);
+    const response = await fetch(`http://localhost:8080/api/${type}/` + this.state.input);
     const result = await response.json();
 
     this.setState({
@@ -41,8 +41,11 @@ class App extends Component {
               value={this.state.input}
               onChange={this.handleChange}
             />
-            <button onClick={this.handleClick} disabled={this.state.loading}>
+            <button onClick={e => this.handleClick(e,'reverse')} disabled={this.state.loading}>
               {this.state.loading ? "Loading..." : "Call reverse API"}
+            </button>
+            <button onClick={e => this.handleClick(e,'lowercase')} disabled={this.state.loading}>
+              {this.state.loading ? "Loading..." : "Call lowercase API"}
             </button>
           </div>
         </div>
